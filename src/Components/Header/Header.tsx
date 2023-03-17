@@ -4,11 +4,12 @@ const Header = () => {
   return (
     <Box
       sx={{
-        background: "#F6F5F8",
+        background: "#F5F4FA",
         top: 0,
         left: 0,
         width: "100%",
         position: "fixed",
+        zIndex: "999",
         display: "relative",
       }}
     >

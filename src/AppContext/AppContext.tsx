@@ -18,6 +18,7 @@ type CartItemType = {
   products: ProductType[];
   discountPercentage: number;
   discountedPrice: number;
+  discountedTotal: number;
   price: number;
   title: string;
 };

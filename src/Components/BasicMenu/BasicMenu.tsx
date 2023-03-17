@@ -18,10 +18,11 @@ export default function BasicMenu() {
         alignItems: "center",
         top: 0,
         left: 0,
-        background: "#F6F5F8",
+        background: "#F5F4FA",
         width: visible ? "10%" : "5%",
         height: "100%",
         marginTop: "100px",
+        zIndex: "999",
         padding: "15px",
         transition: ".3s linear",
       }}
@@ -50,7 +51,7 @@ export default function BasicMenu() {
             <Typography
               sx={{
                 display: visible ? "flex" : "none",
-                fontSize: "12px",
+                fontSize: "16px",
                 transition: ".3s linear",
               }}
             >
@@ -74,7 +75,7 @@ export default function BasicMenu() {
             <Typography
               sx={{
                 display: visible ? "flex" : "none",
-                fontSize: "12px",
+                fontSize: "16px",
                 transition: ".3s linear",
               }}
             >
