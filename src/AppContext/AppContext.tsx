@@ -43,7 +43,6 @@ export const AppContextProvider = ({ children }: AppContextProviderProps) => {
       const res = await fetch("https://dummyjson.com/carts");
       const data = await res.json();
       setCartItems(data.carts);
-      console.log(data);
     } catch (error) {
       console.error(error);
     }

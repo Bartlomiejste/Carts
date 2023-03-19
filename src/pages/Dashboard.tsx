@@ -13,7 +13,6 @@ export interface ProductType {
   price: number;
 }
 export type CartItemType = {
-  name: string;
   id: number;
   products: ProductType[];
   discountPercentage: number;
@@ -57,7 +56,7 @@ const Dashboard = () => {
             padding: "20px",
           }}
         >
-          List of the products in carts
+          List of the carts
         </Box>
         <Carts />
         <SingleCart />
