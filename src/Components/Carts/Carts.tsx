@@ -1,11 +1,13 @@
-import { Typography } from "@mui/material";
 import { Box } from "@mui/system";
 import { useEffect, useContext } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import { AppContext } from "../../AppContext/AppContext";
 import { CartItemType } from "../../pages/Dashboard";
 
 const Carts = () => {
   const { fetchCartItems, cartItems } = useContext<any>(AppContext);
+  const navigate = useNavigate();
+  const { id } = useParams();
 
   useEffect(() => {
     fetchCartItems();
@@ -32,6 +34,7 @@ const Carts = () => {
               transform: "translateY(-5px)",
             },
           }}
+          onClick={() => navigate(`/${id}`)}
         >
           <Box>
             <Box

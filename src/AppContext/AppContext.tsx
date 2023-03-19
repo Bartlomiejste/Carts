@@ -5,6 +5,8 @@ interface AppContext {
   visible: boolean;
   fetchCartItems: () => Promise<void>;
   cartItems: CartItemType[];
+  cart: CartItemType[];
+  fetchSingleCartItem: (id: number) => Promise<void>;
 }
 
 interface ProductType {
@@ -32,7 +34,7 @@ interface AppContextProviderProps {
 export const AppContextProvider = ({ children }: AppContextProviderProps) => {
   const [visible, setVisible] = useState(true);
   const [cartItems, setCartItems] = useState<CartItemType[]>([]);
-
+  const [cart, setCart] = useState<CartItemType[]>([]);
   const handleToggle = () => {
     setVisible(!visible);
   };
@@ -48,6 +50,17 @@ export const AppContextProvider = ({ children }: AppContextProviderProps) => {
     }
   };
 
+  const fetchSingleCartItem = async (id: number) => {
+    try {
+      const res = await fetch(`https://dummyjson.com/carts/${id}`);
+      const data = await res.json();
+      setCart(data.carts);
+      console.log(data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   return (
     <AppContext.Provider
       value={{
@@ -55,6 +68,8 @@ export const AppContextProvider = ({ children }: AppContextProviderProps) => {
         visible,
         fetchCartItems,
         cartItems,
+        fetchSingleCartItem,
+        cart,
       }}
     >
       {children}

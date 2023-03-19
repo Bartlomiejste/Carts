@@ -5,6 +5,8 @@ import BasicMenu from "../Components/BasicMenu/BasicMenu";
 import Header from "../Components/Header/Header";
 import Carts from "../Components/Carts/Carts";
 import ResultCarts from "../Components/ResultCarts/ResultCarts";
+import AddCart from "../Components/AddCart/AddCart";
+import SingleCart from "../Components/SingleCart/SingleCart";
 
 export interface ProductType {
   id: number;
@@ -12,6 +14,7 @@ export interface ProductType {
   price: number;
 }
 export type CartItemType = {
+  name: string;
   id: number;
   products: ProductType[];
   discountPercentage: number;
@@ -58,6 +61,8 @@ const App = () => {
           List of the products in carts
         </Box>
         <Carts />
+        <AddCart />
+        <SingleCart />
       </Box>
     </>
   );
