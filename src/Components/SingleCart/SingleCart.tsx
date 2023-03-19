@@ -1,12 +1,38 @@
 import { Box } from "@mui/system";
-import { useContext } from "react";
-import { AppContext } from "../../AppContext/AppContext";
+import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+// import { CartItemType } from "../../pages/Dashboard";
 
+type CartItemType = {
+  name: string;
+  id: number;
+  discountPercentage: number;
+  discountedPrice: number;
+  discountedTotal: number;
+  price: number;
+  title: string;
+};
 const SingleCart = () => {
-  const { cart } = useContext<any>(AppContext);
+  const [cart, setCart] = useState<CartItemType>();
+  const { id } = useParams();
 
+  useEffect(() => {
+    fetchSingleCartItem();
+  }, []);
+
+  const fetchSingleCartItem = async () => {
+    const response = await fetch(`https://dummyjson.com/carts/${id}`);
+    if (!response.ok) {
+      const message = `An error has occured: ${response.status}`;
+      throw new Error(message);
+    }
+    const data = await response.json();
+    setCart(data);
+    return data;
+  };
   return (
     <>
+      {cart}
       <Box
         sx={{
           display: "flex",

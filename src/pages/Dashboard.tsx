@@ -5,7 +5,6 @@ import BasicMenu from "../Components/BasicMenu/BasicMenu";
 import Header from "../Components/Header/Header";
 import Carts from "../Components/Carts/Carts";
 import ResultCarts from "../Components/ResultCarts/ResultCarts";
-import AddCart from "../Components/AddCart/AddCart";
 import SingleCart from "../Components/SingleCart/SingleCart";
 
 export interface ProductType {
@@ -24,7 +23,7 @@ export type CartItemType = {
   title: string;
 };
 
-const App = () => {
+const Dashboard = () => {
   const { visible, fetchCartItems } = useContext<any>(AppContext);
 
   useEffect(() => {
@@ -61,11 +60,10 @@ const App = () => {
           List of the products in carts
         </Box>
         <Carts />
-        <AddCart />
         <SingleCart />
       </Box>
     </>
   );
 };
 
-export default App;
+export default Dashboard;
