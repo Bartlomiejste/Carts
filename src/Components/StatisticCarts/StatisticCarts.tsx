@@ -1,24 +1,33 @@
-import { Typography } from "@mui/material";
 import { Box } from "@mui/system";
-import { useContext } from "react";
-import { AppContext } from "../../AppContext/AppContext";
+import { ProductsType, useAppContext } from "../../AppContext/AppContext";
 import CountAnimation from "../CountAnimation/CountAnimation";
+import cartsResult from "../../assets/cartsResult.png";
+import cartsDiscount from "../../assets/cartsDiscount.png";
+import cartsAll from "../../assets/cartsAll.png";
+import { useEffect, useState } from "react";
+import { getAllProducts } from "../../Api/api";
 
 const ResultCarts = () => {
-  const { cartItems } = useContext<any>(AppContext);
+  const [totalProducts, setTotalProducts] = useState<ProductsType[]>([]);
+  const { cartItems } = useAppContext();
 
-  let totalDiscountedPrice = 0;
-  let totalProducts = 0;
-  const totalCarts = cartItems.length;
+  useEffect(() => {
+    getAllProducts().then((data) => setTotalProducts(data));
+  }, []);
+  console.log(totalProducts);
 
-  cartItems.forEach((cart: { products: any[] }) => {
-    cart.products.forEach(
-      (product: { discountedPrice: number; quantity: number }) => {
-        totalDiscountedPrice += product.discountedPrice;
-        totalProducts += product.quantity;
-      }
-    );
-  });
+  const { totalDiscountedPrice } = cartItems.reduce(
+    (acc, cartItem) => {
+      return cartItem.products.reduce(
+        (cartAcc, product) => ({
+          totalDiscountedPrice:
+            cartAcc.totalDiscountedPrice + product.discountedPrice,
+        }),
+        acc
+      );
+    },
+    { totalDiscountedPrice: 0 }
+  );
 
   return (
     <>
@@ -31,7 +40,7 @@ const ResultCarts = () => {
           padding: "20px",
         }}
       >
-        Results Cart
+        Carts summary
       </Box>
 
       <Box
@@ -55,18 +64,19 @@ const ResultCarts = () => {
             boxShadow: "10px 10px 15px #E6E5F0",
           }}
         >
-          <Box
-            sx={{
-              height: "50px",
-              width: "50px",
-              backgroundImage: `url(${require("../../assets/cartsResult.png")})`,
-              backgroundRepeat: "no-repeat",
-              backgroundPosition: "center",
-              backgroundSize: "contain",
-            }}
-          />
+          <Box>
+            <img
+              src={cartsResult}
+              style={{
+                height: "50px",
+                width: "50px",
+              }}
+            />
+          </Box>
+
           <Box sx={{ textAlign: "center" }}>
-            Total carts <CountAnimation duration={2000} endCount={totalCarts} />
+            Total carts
+            <CountAnimation duration={2000} endCount={cartItems.length} />
           </Box>
         </Box>
 
@@ -83,19 +93,18 @@ const ResultCarts = () => {
             boxShadow: "10px 10px 15px #E6E5F0",
           }}
         >
-          <Box
-            sx={{
-              height: "50px",
-              width: "50px",
-              backgroundImage: `url(${require("../../assets/cartsDiscount.png")})`,
-              backgroundRepeat: "no-repeat",
-              backgroundPosition: "center",
-              backgroundSize: "contain",
-            }}
-          />
+          <Box>
+            <img
+              src={cartsDiscount}
+              style={{
+                height: "50px",
+                width: "50px",
+              }}
+            />
+          </Box>
           <Box sx={{ textAlign: "center" }}>
             Total products
-            <CountAnimation duration={2000} endCount={totalProducts} />
+            <CountAnimation duration={2000} endCount={100} />
           </Box>
         </Box>
 
@@ -112,18 +121,18 @@ const ResultCarts = () => {
             boxShadow: "10px 10px 15px #E6E5F0",
           }}
         >
-          <Box
-            sx={{
-              height: "50px",
-              width: "50px",
-              backgroundImage: `url(${require("../../assets/cartsAll.png")})`,
-              backgroundRepeat: "no-repeat",
-              backgroundPosition: "center",
-              backgroundSize: "contain",
-            }}
-          />
+          <Box>
+            <img
+              src={cartsAll}
+              style={{
+                height: "50px",
+                width: "50px",
+              }}
+            />
+          </Box>
+
           <Box sx={{ textAlign: "center" }}>
-            Total discounted $
+            Total discount $
             <CountAnimation duration={2000} endCount={totalDiscountedPrice} />
           </Box>
         </Box>

@@ -1,30 +1,32 @@
 import { createContext, useState, useContext, ReactNode } from "react";
-import { useParams } from "react-router-dom";
 
-interface AppContext {
+interface ApplicationContext {
   change: () => void;
   visible: boolean;
-  fetchCartItems: () => Promise<void>;
-  cartItems: CartItemType[];
+  fetchCartsItems: () => Promise<void>;
+  cartItems: CartsType[];
 }
 
-interface ProductType {
+export interface ProductsType {
   id: number;
   title: string;
   price: number;
-}
-
-type CartItemType = {
-  id: number;
-  products: ProductType[];
-  discountPercentage: number;
   discountedPrice: number;
+  discountPercentage: number;
+  quantity: number;
+  total: number;
+}
+
+export type CartsType = {
+  id: number;
+  products: ProductsType[];
   discountedTotal: number;
-  price: number;
-  title: string;
+  total: number;
 };
 
-export const AppContext = createContext<AppContext | undefined>(undefined);
+export const AppContext = createContext<ApplicationContext | undefined>(
+  undefined
+);
 
 interface AppContextProviderProps {
   children: ReactNode;
@@ -32,13 +34,13 @@ interface AppContextProviderProps {
 
 export const AppContextProvider = ({ children }: AppContextProviderProps) => {
   const [visible, setVisible] = useState(true);
-  const [cartItems, setCartItems] = useState<CartItemType[]>([]);
+  const [cartItems, setCartItems] = useState<CartsType[]>([]);
 
   const handleToggle = () => {
     setVisible(!visible);
   };
 
-  const fetchCartItems = async () => {
+  const fetchCartsItems = async () => {
     try {
       const res = await fetch("https://dummyjson.com/carts");
       const data = await res.json();
@@ -53,7 +55,7 @@ export const AppContextProvider = ({ children }: AppContextProviderProps) => {
       value={{
         change: handleToggle,
         visible,
-        fetchCartItems,
+        fetchCartsItems,
         cartItems,
       }}
     >

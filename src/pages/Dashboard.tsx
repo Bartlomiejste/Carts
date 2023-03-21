@@ -1,33 +1,13 @@
 import { Box } from "@mui/material";
-import { useEffect, useContext } from "react";
-import { AppContext } from "../AppContext/AppContext";
+import { useAppContext } from "../AppContext/AppContext";
 import BasicMenu from "../Components/BasicMenu/BasicMenu";
 import Header from "../Components/Header/Header";
 import Carts from "../Components/Carts/Carts";
-import ResultCarts from "../Components/ResultCarts/ResultCarts";
-import SingleCart from "../Components/SingleCart/SingleCart";
-
-export interface ProductType {
-  id: number;
-  title: string;
-  price: number;
-}
-export type CartItemType = {
-  id: number;
-  products: ProductType[];
-  discountPercentage: number;
-  discountedPrice: number;
-  discountedTotal: number;
-  price: number;
-  title: string;
-};
+import StatisticCarts from "../Components/StatisticCarts/StatisticCarts";
+import NewCart from "./NewCart";
 
 const Dashboard = () => {
-  const { visible, fetchCartItems } = useContext<any>(AppContext);
-
-  useEffect(() => {
-    fetchCartItems();
-  }, []);
+  const { visible } = useAppContext();
 
   return (
     <>
@@ -35,8 +15,7 @@ const Dashboard = () => {
       <Header />
       <Box
         sx={{
-          margin: visible ? "100px 0 0 200px" : "100px 0 0 120px",
-          padding: "20px",
+          padding: visible ? "150px 0 0 250px" : "150px 0 0 150px",
           transition: ".3s linear",
           flexWrap: "wrap",
           display: "flex",
@@ -45,7 +24,7 @@ const Dashboard = () => {
           background: "lightgrey",
         }}
       >
-        <ResultCarts />
+        <StatisticCarts />
         <Box
           sx={{
             fontWeight: "700",
@@ -59,7 +38,7 @@ const Dashboard = () => {
           List of the carts
         </Box>
         <Carts />
-        <SingleCart />
+        <NewCart />
       </Box>
     </>
   );

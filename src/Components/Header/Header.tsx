@@ -1,13 +1,14 @@
-import { Box } from "@mui/material";
-
+import { Box, Typography } from "@mui/material";
+import logo from "../../assets/logo.png";
 const Header = () => {
   return (
     <Box
       sx={{
-        background: "#F5F4FA",
+        background: "#FBA51A",
         top: 0,
         left: 0,
         width: "100%",
+        height: "120px",
         position: "fixed",
         zIndex: "999",
         display: "relative",
@@ -15,14 +16,25 @@ const Header = () => {
     >
       <Box
         sx={{
-          height: "100px",
-          width: "100px",
-          backgroundImage: `url(${require("../../assets/1.png")})`,
-          backgroundRepeat: "no-repeat",
-          backgroundPosition: "center",
-          backgroundSize: "contain",
+          height: "100%",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "space-around",
         }}
-      />
+      >
+        <Typography
+          sx={{ fontFamily: "Pacifico, sans-serif", fontSize: "35px" }}
+        >
+          Shop Online
+        </Typography>
+        <img
+          src={logo}
+          style={{
+            height: "100%",
+            width: "10%",
+          }}
+        />
+      </Box>
     </Box>
   );
 };
