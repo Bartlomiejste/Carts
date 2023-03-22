@@ -1,6 +1,5 @@
 ![Main](https://user-images.githubusercontent.com/95884784/227046577-2ae4beab-9db9-49d2-af0a-9d31ccb6aebe.png)
 ![OneCart](https://user-images.githubusercontent.com/95884784/227046601-1521bd94-54f8-4433-9cee-10258b950911.png)
-![AddCart](https://user-images.githubusercontent.com/95884784/227046625-a3c226ee-c33f-4fec-8234-51ae92f93185.png)
 
 # Carts <br/>
 
