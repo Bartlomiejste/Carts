@@ -1,46 +1,43 @@
-# Getting Started with Create React App
+![Main](https://user-images.githubusercontent.com/95884784/227046577-2ae4beab-9db9-49d2-af0a-9d31ccb6aebe.png)
+![OneCart](https://user-images.githubusercontent.com/95884784/227046601-1521bd94-54f8-4433-9cee-10258b950911.png)
+![AddCart](https://user-images.githubusercontent.com/95884784/227046625-a3c226ee-c33f-4fec-8234-51ae92f93185.png)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Carts <br/>
 
-## Available Scripts
+## Installation 💿<br/>
 
-In the project directory, you can run:
+1. Download project from Github repository. Check out link below to see the way to do it:<br/>
 
-### `npm start`
+- https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository<br/><br/>
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+2. Open downloaded file in your code editor. Now you can download all necessary packages:<br/>
 
-### `npm test`
+### - npm install<br/><br/>
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-### `npm run build`
+3. After this you can open another terminal window. Chceck if you are in correct place (you should be in /Carts/carts). If you're not :<br/>
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- cd shopping<br/>
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+  If you are in /Carts/carts just type :<br/>
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### - npm start <br/><br/>
 
-### `npm run eject`
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+4. Explore the App <br/><br/>
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+## Technologies and libraries
 
-## Learn More
+| Technology | Description |
+| --- | --- |
+| TypeScript | Main language used to make App. |
+| React | Powerfull library to create App. |
+| React Router DOM| Library that allows to create paths to different elements and links to it. |
+| MUI | Material UI - design framework for React. |
+| Chartjs | It is an open-source JavaScript library for data visualization that supports eight chart types. |
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+
