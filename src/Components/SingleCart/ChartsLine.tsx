@@ -74,7 +74,7 @@ const ChartsLine = () => {
     },
   };
 
-  const data: any = {
+  const data = {
     labels: cart?.products.map((product: ProductsType) => product.title),
     datasets: [
       {

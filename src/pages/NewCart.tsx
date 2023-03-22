@@ -59,7 +59,7 @@ const NewCart = () => {
     setSelectedProduct(event.target.value);
   };
 
-  const saveCartsToLocalStorage = (carts: any[]) => {
+  const saveCartsToLocalStorage = (carts: ProductsType[]) => {
     localStorage.setItem("carts", JSON.stringify(carts));
   };
 
@@ -199,20 +199,18 @@ const NewCart = () => {
 
                   <Box component="span" sx={{ fontWeight: "700" }}>
                     <Box>
-                      {cart.products.map(
-                        (item: ProductsType, index: number) => (
-                          <Typography
-                            sx={{
-                              fontSize: "12px",
-                              textAlign: "left",
-                              margin: "5px",
-                            }}
-                            key={index}
-                          >
-                            {item.id}
-                          </Typography>
-                        )
-                      )}
+                      {cart.products.map((item: ProductsType, id: number) => (
+                        <Typography
+                          sx={{
+                            fontSize: "12px",
+                            textAlign: "left",
+                            margin: "5px",
+                          }}
+                          key={id}
+                        >
+                          {item.id}
+                        </Typography>
+                      ))}
                     </Box>
                   </Box>
                 </Box>

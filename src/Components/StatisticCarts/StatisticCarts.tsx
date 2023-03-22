@@ -1,19 +1,12 @@
 import { Box } from "@mui/system";
-import { ProductsType, useAppContext } from "../../AppContext/AppContext";
+import { useAppContext } from "../../AppContext/AppContext";
 import CountAnimation from "../CountAnimation/CountAnimation";
 import cartsResult from "../../assets/cartsResult.png";
 import cartsDiscount from "../../assets/cartsDiscount.png";
 import cartsAll from "../../assets/cartsAll.png";
-import { useEffect, useState } from "react";
-import { getAllProducts } from "../../Api/api";
 
 const ResultCarts = () => {
-  const [, setTotalProducts] = useState<ProductsType[]>([]);
   const { cartItems } = useAppContext();
-
-  useEffect(() => {
-    getAllProducts().then((data) => setTotalProducts(data));
-  }, []);
 
   const { totalDiscountedPrice } = cartItems.reduce(
     (acc, cartItem) => {
