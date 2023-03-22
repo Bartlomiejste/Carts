@@ -14,7 +14,6 @@ const ResultCarts = () => {
   useEffect(() => {
     getAllProducts().then((data) => setTotalProducts(data));
   }, []);
-  console.log(totalProducts);
 
   const { totalDiscountedPrice } = cartItems.reduce(
     (acc, cartItem) => {

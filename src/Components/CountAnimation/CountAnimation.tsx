@@ -8,7 +8,7 @@ interface CounterProps {
 
 const CountAnimation = ({ duration, endCount }: CounterProps) => {
   const [count, setCount] = useState<number>(0);
-  const [delay] = useState<number>(500); // delay start 1 second
+  const [delay] = useState<number>(500); // delay start 0.5 second
 
   useEffect(() => {
     const timerId = setTimeout(() => {

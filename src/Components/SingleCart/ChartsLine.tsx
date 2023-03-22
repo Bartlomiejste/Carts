@@ -40,7 +40,6 @@ const ChartsLine = () => {
     }
     const data = await response.json();
     setCart(data);
-    console.log(data);
     return data;
   };
 
