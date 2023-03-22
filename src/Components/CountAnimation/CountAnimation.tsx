@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { Box } from "@mui/material";
 
 interface CounterProps {
@@ -8,7 +8,7 @@ interface CounterProps {
 
 const CountAnimation = ({ duration, endCount }: CounterProps) => {
   const [count, setCount] = useState<number>(0);
-  const [delay] = useState<number>(500); // delay start 0.5 second
+  const [delay] = useState<number>(500);
 
   useEffect(() => {
     const timerId = setTimeout(() => {

@@ -8,7 +8,7 @@ import { useEffect, useState } from "react";
 import { getAllProducts } from "../../Api/api";
 
 const ResultCarts = () => {
-  const [totalProducts, setTotalProducts] = useState<ProductsType[]>([]);
+  const [, setTotalProducts] = useState<ProductsType[]>([]);
   const { cartItems } = useAppContext();
 
   useEffect(() => {

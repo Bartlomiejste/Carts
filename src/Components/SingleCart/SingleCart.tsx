@@ -3,7 +3,6 @@ import { useAppContext } from "../../AppContext/AppContext";
 import BasicMenu from "../BasicMenu/BasicMenu";
 import Header from "../Header/Header";
 import ChartsLine from "./ChartsLine";
-
 import TableCart from "./TableCart";
 
 const SingleCart = () => {

@@ -3,21 +3,15 @@ import { useEffect, useState } from "react";
 import { getAllProducts } from "../Api/api";
 import { ProductsType } from "../AppContext/AppContext";
 import shoppingImg from "../../src/assets/shoppingCart.png";
-import { Button, FormControl, InputLabel, Typography } from "@mui/material";
+import { Button, FormControl, Typography } from "@mui/material";
+import DeleteIcon from "@mui/icons-material/Delete";
+import { v4 as uuidv4 } from "uuid";
 
 const NewCart = () => {
   const [products, setProducts] = useState<ProductsType[]>([]);
   const [productsInBox, setProductsInBox] = useState<any[]>([]);
   const [selectedProduct, setSelectedProduct] = useState<ProductsType>();
-  const [isCartCreated, setIsCartCreated] = useState(false);
   const [allCarts, setAllCarts] = useState<any[]>([]);
-
-  const getCartsFromLocalStorage = () => {
-    const cartsFromLocalStorage = localStorage.getItem("carts");
-    if (cartsFromLocalStorage) {
-      setAllCarts(JSON.parse(cartsFromLocalStorage));
-    }
-  };
 
   useEffect(() => {
     getAllProducts().then((data) => setProducts(data));
@@ -26,7 +20,7 @@ const NewCart = () => {
 
   const handleAddProduct = () => {
     if (!selectedProduct) {
-      alert("Musisz wybrać produkt z listy");
+      alert("You must select a product from the lists");
       return;
     }
     if (productsInBox.length < 5) {
@@ -35,20 +29,29 @@ const NewCart = () => {
         { id: selectedProduct, quantity: 1 },
       ]);
     } else {
-      alert("Nie można dodać więcej niż 5 produktów do koszyka");
+      alert("Can't add more than 5 items to cart");
+    }
+  };
+
+  const getCartsFromLocalStorage = () => {
+    const cartsFromLocalStorage = localStorage.getItem("carts");
+    if (cartsFromLocalStorage) {
+      setAllCarts(JSON.parse(cartsFromLocalStorage));
     }
   };
 
   const handleCreateCart = () => {
     if (productsInBox.length === 5) {
-      const newCart = productsInBox;
+      const newCart = {
+        id: uuidv4(),
+        products: productsInBox,
+      };
       setAllCarts((prev) => [...prev, newCart]);
       saveCartsToLocalStorage([...allCarts, newCart]);
-      setIsCartCreated(true);
       setProductsInBox([]);
       setSelectedProduct(undefined);
     } else {
-      alert("Musisz dodać 5 produktów do koszyka, aby stworzyć koszyk");
+      alert("You must add 5 items to your cart to create a cart");
     }
   };
 
@@ -56,14 +59,16 @@ const NewCart = () => {
     setSelectedProduct(event.target.value);
   };
 
-  const handleRemoveCart = (cartId: number) => {
-    const updatedCarts = allCarts.filter((cart) => cartId !== cart.id);
-    saveCartsToLocalStorage(updatedCarts);
-    setAllCarts(updatedCarts);
-  };
-
   const saveCartsToLocalStorage = (carts: any[]) => {
     localStorage.setItem("carts", JSON.stringify(carts));
+  };
+
+  const handleRemoveCart = (cartId: string) => {
+    const updatedCarts = allCarts.filter((cart) => cart.id !== cartId);
+    saveCartsToLocalStorage(updatedCarts);
+    setAllCarts((prevAllCarts) => {
+      return updatedCarts;
+    });
   };
 
   return (
@@ -77,7 +82,10 @@ const NewCart = () => {
         padding: "20px",
       }}
     >
-      <Box sx={{ marginBottom: "20px" }}>Add new cart</Box>
+      <Box sx={{ marginBottom: "20px" }}>
+        Add new cart
+        <Typography>(add 5 products)</Typography>
+      </Box>
       <FormControl
         sx={{
           display: "flex",
@@ -130,7 +138,9 @@ const NewCart = () => {
           alignItems: "center",
         }}
       >
-        <Box sx={{ margin: "20px", width: "100%" }}>My new cart</Box>
+        <Box sx={{ margin: "150px 20px 20px 20px", width: "100%" }}>
+          My new cart
+        </Box>
 
         {allCarts.length ? (
           <Box sx={{ display: "flex", flexWrap: "wrap" }}>
@@ -138,7 +148,7 @@ const NewCart = () => {
               <Box
                 sx={{
                   width: "350px",
-                  height: "150px",
+                  height: "170px",
                   margin: "15px",
                   flexDirectoin: "column",
                   borderRadius: "15px",
@@ -156,12 +166,21 @@ const NewCart = () => {
                     display: "flex",
                     alignItems: "center",
                     justifyContent: "flex-end",
+                    fontSize: "10px",
                   }}
                 >
-                  <Button onClick={() => handleRemoveCart(cart.id)}>
-                    Delete cart
+                  <Button
+                    sx={{
+                      fontSize: "13px",
+                    }}
+                  >
+                    <DeleteIcon
+                      sx={{ color: "#FBA51A" }}
+                      onClick={() => handleRemoveCart(cart.id)}
+                    />
                   </Button>
                 </Box>
+
                 <Box
                   sx={{
                     display: "flex",
@@ -178,17 +197,22 @@ const NewCart = () => {
                     }}
                   />
 
-                  <Box sx={{ fontSize: "22px" }}>
-                    <Box component="span">My products: </Box>
-                    <Box component="span" sx={{ fontWeight: "700" }}>
-                      <Box>
-                        <Typography
-                          sx={{ fontSize: "12px", textAlign: "center" }}
-                          key={cart.id}
-                        >
-                          {cart.id}
-                        </Typography>
-                      </Box>
+                  <Box component="span" sx={{ fontWeight: "700" }}>
+                    <Box>
+                      {cart.products.map(
+                        (item: ProductsType, index: number) => (
+                          <Typography
+                            sx={{
+                              fontSize: "12px",
+                              textAlign: "left",
+                              margin: "5px",
+                            }}
+                            key={index}
+                          >
+                            {item.id}
+                          </Typography>
+                        )
+                      )}
                     </Box>
                   </Box>
                 </Box>
