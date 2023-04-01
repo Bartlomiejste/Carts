@@ -8,6 +8,7 @@ interface ApplicationContext {
 }
 
 export interface ProductsType {
+  target: any;
   id: number;
   title: string;
   price: number;

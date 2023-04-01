@@ -30,6 +30,9 @@ export default function BasicMenu() {
           width: "100%",
           display: "flex",
           justifyContent: "flex-end",
+          "@media (max-width: 1434px)": {
+            display: "none",
+          },
         }}
       >
         {visible ? (

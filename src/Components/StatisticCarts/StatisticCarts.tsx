@@ -30,6 +30,10 @@ const ResultCarts = () => {
           textAlign: "left",
           width: "100%",
           padding: "20px",
+          "@media only screen and (min-width: 320px) and (max-width: 1023px)": {
+            textAlign: "center",
+            paddingLeft: "70px",
+          },
         }}
       >
         Carts summary
@@ -41,6 +45,12 @@ const ResultCarts = () => {
           display: "flex",
           alignItems: "center",
           justifyContent: "space-evenly",
+          "@media only screen and (min-width: 320px) and  (max-width: 1023px)":
+            {
+              flexDirection: "column",
+              flexWrap: "wrap",
+              paddingLeft: "50px",
+            },
         }}
       >
         <Box
@@ -54,6 +64,11 @@ const ResultCarts = () => {
             borderRadius: "15px",
             background: "#ffff",
             boxShadow: "10px 10px 15px #E6E5F0",
+            "@media only screen and (min-width: 320px) and (max-width: 1024px)":
+              {
+                width: "190px",
+                height: "100px",
+              },
           }}
         >
           <Box>
@@ -66,7 +81,15 @@ const ResultCarts = () => {
             />
           </Box>
 
-          <Box sx={{ textAlign: "center" }}>
+          <Box
+            sx={{
+              textAlign: "center",
+              "@media only screen and (min-width: 320px) and (max-width: 1024px)":
+                {
+                  fontSize: "12px",
+                },
+            }}
+          >
             Total carts
             <CountAnimation duration={2000} endCount={cartItems.length} />
           </Box>
@@ -83,6 +106,11 @@ const ResultCarts = () => {
             borderRadius: "15px",
             background: "#ffff",
             boxShadow: "10px 10px 15px #E6E5F0",
+            "@media only screen and (min-width: 320px) and (max-width: 720px)":
+              {
+                width: "190px",
+                height: "100px",
+              },
           }}
         >
           <Box>
@@ -94,7 +122,15 @@ const ResultCarts = () => {
               }}
             />
           </Box>
-          <Box sx={{ textAlign: "center" }}>
+          <Box
+            sx={{
+              textAlign: "center",
+              "@media only screen and (min-width: 320px) and (max-width: 1024px)":
+                {
+                  fontSize: "12px",
+                },
+            }}
+          >
             Total products
             <CountAnimation duration={2000} endCount={100} />
           </Box>
@@ -111,6 +147,11 @@ const ResultCarts = () => {
             borderRadius: "15px",
             background: "#ffff",
             boxShadow: "10px 10px 15px #E6E5F0",
+            "@media only screen and (min-width: 320px) and (max-width: 720px)":
+              {
+                width: "190px",
+                height: "100px",
+              },
           }}
         >
           <Box>
@@ -123,7 +164,15 @@ const ResultCarts = () => {
             />
           </Box>
 
-          <Box sx={{ textAlign: "center" }}>
+          <Box
+            sx={{
+              textAlign: "center",
+              "@media only screen and (min-width: 320px) and (max-width: 1024px)":
+                {
+                  fontSize: "12px",
+                },
+            }}
+          >
             Total discount $
             <CountAnimation duration={2000} endCount={totalDiscountedPrice} />
           </Box>

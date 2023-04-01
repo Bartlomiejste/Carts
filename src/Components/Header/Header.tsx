@@ -13,6 +13,9 @@ const Header = () => {
         position: "fixed",
         zIndex: "999",
         display: "relative",
+        "@media only screen and (min-width: 320px) and (max-width: 720px)": {
+          width: "100vw",
+        },
       }}
     >
       <Box
@@ -24,17 +27,30 @@ const Header = () => {
         }}
       >
         <Typography
-          sx={{ fontFamily: "Pacifico, sans-serif", fontSize: "35px" }}
+          sx={{
+            fontFamily: "Pacifico, sans-serif",
+            fontSize: "35px",
+            "@media only screen and (min-width: 320px) and (max-width: 720px)":
+              {
+                width: "100%",
+                textAlign: "center",
+                fontSize: "20px",
+                marginLeft: "80px",
+              },
+          }}
         >
           Shop Online
         </Typography>
-        <img
-          src={logo}
-          style={{
-            height: "100%",
-            width: "10%",
+        <Box
+          sx={{
+            "@media only screen and (min-width: 320px) and (max-width: 720px)":
+              {
+                display: "none",
+              },
           }}
-        />
+        >
+          <img src={logo} style={{ height: "100px", width: "150px" }} />
+        </Box>
       </Box>
     </Box>
   );
