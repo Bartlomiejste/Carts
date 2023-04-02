@@ -97,8 +97,26 @@ const ChartsLine = () => {
   };
 
   return (
-    <Box sx={{ width: "60%", marginTop: "100px" }}>
-      <Line options={options} data={data} />;
+    <Box
+      sx={{
+        width: "60%",
+        height: "100%",
+        marginTop: "100px",
+        "@media only screen and (min-width: 320px) and (max-width: 1024px)": {
+          height: "100vh",
+          width: "100vw",
+        },
+        "@media only screen and (min-width: 719px)": {
+          height: "100vh",
+          width: "100vw",
+        },
+        "@media only screen and (min-width: 1024px)": {
+          height: "100vh",
+          width: "100vw",
+        },
+      }}
+    >
+      <Line options={options} data={data} />
     </Box>
   );
 };

@@ -9,6 +9,8 @@ import { Box } from "@mui/material";
 import { useEffect, useState } from "react";
 import { CartsType, ProductsType } from "../../AppContext/AppContext";
 import { useParams } from "react-router-dom";
+import { useTheme } from "@mui/material/styles";
+import useMediaQuery from "@mui/material/useMediaQuery";
 
 export default function SpanningTable() {
   const [cart, setCart] = useState<CartsType>();
@@ -28,7 +30,8 @@ export default function SpanningTable() {
     setCart(data);
     return data;
   };
-
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
   return (
     <Box
       sx={{
@@ -37,14 +40,26 @@ export default function SpanningTable() {
         justifyContent: "center",
         width: "100%",
         marginTop: "80px",
+        marginLeft: "12px",
       }}
     >
       <TableContainer
         component={Paper}
-        sx={{ maxWidth: 1000, borderRadius: "20px" }}
+        sx={{
+          maxWidth: 1000,
+          borderRadius: "20px",
+          "& th, & td": {
+            "@media (max-width: 600px)": {
+              padding: "2px",
+              fontSize: "8px",
+              lineHeight: "15px",
+              width: "100vw",
+            },
+          },
+        }}
       >
         <Table aria-label="spanning table">
-          <TableHead sx={{ background: "#fff9c4" }}>
+          <TableHead sx={{ background: "#fff9c4", fontSize: "5px" }}>
             <TableRow>
               <TableCell sx={{ fontWeight: "bold" }}>Product name</TableCell>
               <TableCell align="center" sx={{ fontWeight: "bold" }}>
@@ -64,13 +79,19 @@ export default function SpanningTable() {
           <TableBody>
             {cart?.products.map((product: ProductsType) => (
               <TableRow key={product.id}>
-                <TableCell>{product.title}</TableCell>
-                <TableCell align="center">{product.price}</TableCell>
-                <TableCell align="center">
+                <TableCell data-label="Product name">{product.title}</TableCell>
+                <TableCell data-label="Product price $" align="center">
+                  {product.price}
+                </TableCell>
+                <TableCell data-label="Discounted price $" align="center">
                   {Math.floor(product.discountedPrice / product.quantity)}
                 </TableCell>
-                <TableCell align="center">{product.quantity}</TableCell>
-                <TableCell align="center">{product.total}</TableCell>
+                <TableCell data-label="Quantity" align="center">
+                  {product.quantity}
+                </TableCell>
+                <TableCell data-label="Total $" align="center">
+                  {product.total}
+                </TableCell>
               </TableRow>
             ))}
 
