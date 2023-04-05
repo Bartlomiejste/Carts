@@ -41,6 +41,11 @@ export default function SpanningTable() {
         width: "100%",
         marginTop: "80px",
         marginLeft: "12px",
+        "@media (min-width: 320px)": {
+          fontSize: "8px",
+          lineHeight: "5px",
+          width: "100%",
+        },
       }}
     >
       <TableContainer
@@ -53,7 +58,7 @@ export default function SpanningTable() {
               padding: "2px",
               fontSize: "8px",
               lineHeight: "15px",
-              width: "100vw",
+              width: "100%",
             },
           },
         }}

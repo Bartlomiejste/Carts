@@ -99,24 +99,35 @@ const ChartsLine = () => {
   return (
     <Box
       sx={{
-        width: "60%",
-        height: "100%",
-        marginTop: "100px",
-        "@media only screen and (min-width: 320px) and (max-width: 1024px)": {
-          height: "100vh",
-          width: "100vw",
+        margin: "60px 0 0 0px",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        width: "800px",
+        height: "500px",
+        "@media only screen and (min-width: 320px) and (max-width: 767px)": {
+          display: "none",
         },
-        "@media only screen and (min-width: 719px)": {
-          height: "100vh",
-          width: "100vw",
+        "@media only screen and (min-width: 768px)": {
+          width: "600px",
+          height: "600px",
         },
         "@media only screen and (min-width: 1024px)": {
-          height: "100vh",
-          width: "100vw",
+          width: "800px",
+          height: "600px",
+        },
+        "@media only screen and (min-width: 1440px)": {
+          width: "1000px",
+          height: "600px",
+          marginLeft: "350px",
         },
       }}
     >
-      <Line options={options} data={data} />
+      <Line
+        options={options}
+        data={data}
+        style={{ width: "500px", height: "500px" }}
+      />
     </Box>
   );
 };
